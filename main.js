@@ -39,7 +39,11 @@ function setupClara() {
         sceneCanvasId = claraApi.scene.find({name:'Canvas'});
         //The ID of the canvas needs to be the same as the "External ID" property of the canvas texture in clara
         //This is what enables the live connection between 2d canvas on the page and 3d canvas in the model
-        claraApi.scene.set({sceneCanvasId,plug:'Image',property:'externalId'},'thecanvas')
+        claraApi.scene.set({
+            sceneCanvasId: sceneCanvasId,
+            plug:'Image',
+            property:'externalId'
+        },'thecanvas');
         draw();
     });
 }
@@ -70,16 +74,14 @@ function draw() {
     canvas.width = getWidth();
     canvas.height = getHeight();
     if (settings.pattern < 4) {
-        drawPattern(drawNext);
+        drawPattern();
     } else {
         drawPatternByCode();
-        drawNext();
     }
+    //drawLogo();
+    drawText();
 }
 
-function drawNext() {
-    drawLogo(drawText);
-}
 
 function getWidth() {
     return settings.width * settings.resolution;
@@ -92,29 +94,30 @@ function getHeight() {
 function drawText() {
     let size = 45 * settings.resolution;
     ctx.font = size + 'px ' + settings.font;
-    console.log(ctx.font);
     ctx.textAlign = "center";
     ctx.fillStyle = "black";
     ctx.fillText(settings.text, 0.5 * getWidth(), 0.3 * getHeight());
-    
-    //here we update the canvas texture in clara
-    claraApi.sceneGraph.touch(sceneCanvasId);
 }
 
-function drawPattern(callback) {
+function drawPattern() {
     var img = new Image();
     img.onload = function() {
-        ctx.drawImage(img, 0, 0, getWidth(), getHeight());
-        callback();
+        setTimeout(function(){
+            ctx.drawImage(img, 0, 0, getWidth(), getHeight());
+            claraApi.sceneGraph.touch(sceneCanvasId);
+        }, 100);
     };
     img.src = 'patterns/pattern-' + settings.pattern + '.svg';
 }
 
-function drawLogo(callback) {
+function drawLogo() {
     var img = new Image();
     img.onload = function() {
-        ctx.drawImage(img, 0.35 * getWidth(), 0.6 * getHeight(), 0.3 * getWidth(), 0.3 * getHeight());
-        callback();
+        setTimeout(function(){
+            console.log(img);
+            ctx.drawImage(img, 0.35 * getWidth(), 0.6 * getHeight(), 0.3 * getWidth(), 0.3 * getHeight());
+            claraApi.sceneGraph.touch(sceneCanvasId);
+        }, 100);
     };
     img.src = 'logos/' + settings.logo + '.svg';
 }
@@ -131,8 +134,8 @@ function drawPatternByCode() {
             ctx.fillStyle = settings.color;
             ctx.fill();
         }
-
     }
+    claraApi.sceneGraph.touch(sceneCanvasId);
 }
 
 $(window).ready(function(){
