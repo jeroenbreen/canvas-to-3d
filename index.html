@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas to 3d</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="https://clara.io/js/claraplayer.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Bitter|Lobster|Playfair+Display" rel="stylesheet">
+
+    
+    <script src="assets/jquery/jquery-3.1.1.min.js"></script>
+    <script src="main.js"></script>
+</head>
+<body>
+
+<div id="settings">
+    <div class="settings__row">
+        Resolution<br>
+        <input id="resolution" type="number" onkeyup="update()">
+
+    </div>
+
+    <div class="settings__row">
+        Pattern<br>
+        <input type="radio" name="pattern" value="1" onclick="update()"> 1
+        <input type="radio" name="pattern" value="2" onclick="update()"> 2
+        <input type="radio" name="pattern" value="3" onclick="update()"> 3
+        <input type="radio" name="pattern" value="4" onclick="update()"> by code
+
+    </div>
+
+    <div class="settings__row">
+        Pattern By Code<br>
+        <input id="color" onkeyup="update()">
+        <input id="repetition" onkeyup="update()" type="number">
+        <input id="size" onkeyup="update()" type="number">
+    </div>
+
+    <div class="settings__row">
+        Logo<br>
+        <input type="radio" name="logo" value="eagle" onclick="update()"> Eagle
+        <input type="radio" name="logo" value="lion" onclick="update()"> Lion
+    </div>
+
+    <div class="settings__row">
+        Text<br>
+        <input id="text" onkeyup="update()">
+        <select id="font" onchange="update()">
+            <option value="Arial">Arial</option>
+            <option value="Bitter">Bitter</option>
+            <option value="Lobster">Lobster</option>
+            <option value="Playfair Display">Playfair Display</option>
+        </select>
+    </div>
+
+    <div class="settings__row">
+        <button onclick="toggle()">
+            hide / show
+        </button>
+    </div>
+</div>
+
+<div id="main">
+    <canvas id="thecanvas"></canvas>
+    <div id="configurator"></div>
+</div>
+
+
+</body>
+</html>

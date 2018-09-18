@@ -1,0 +1,33 @@
+body {
+    font-family: Arial;
+    font-size: 12px;
+}
+
+
+#settings {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+.settings__row {
+    padding: 4px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+#main {
+    padding: 10px;
+}
+
+canvas {
+    border: 1px solid #000;
+    margin-right: 20px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#configurator {
+    width: 400px;
+    height: 400px;
+    background: deeppink;
+    display: inline-block;
+}
