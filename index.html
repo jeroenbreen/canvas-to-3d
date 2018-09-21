@@ -8,11 +8,16 @@
     <script src="https://clara.io/js/claraplayer.min.js"></script>
 
     <!-- Required to convert named colors to RGB -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvg/1.4/rgbcolor.min.js"></script>
-    <!-- Optional if you want blur -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stackblur-canvas/1.4.1/stackblur.min.js"></script>
+    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvg/1.4/rgbcolor.min.js"></script>-->
+    <!--&lt;!&ndash; Optional if you want blur &ndash;&gt;-->
+    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stackblur-canvas/1.4.1/stackblur.min.js"></script>-->
     <!-- Main canvg code -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvg/dist/browser/canvg.min.js"></script>
+    <!--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvg/dist/browser/canvg.min.js"></script>-->
+
+    <!-- professorcloud canvg code  -->
+    <!--<script type="text/javascript" src="assets/professorcloud-canvg.js"></script>-->
+
+    <script type="text/javascript" src="assets/fabric/fabric.min.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Bitter|Lobster|Playfair+Display" rel="stylesheet">
 
@@ -37,19 +42,23 @@
         <img width="40" src="patterns/camo.svg" onclick="selectPattern('camo.svg', 0)">
         <br>
         <input id="scale-pattern-1" type="number" onkeyup="update()"> scale <br>
-        <input id="opacity-pattern-1" type="number" onkeyup="update()"> opacity
+        <input id="opacity-pattern-1" type="number" onkeyup="update()"> opacity<br><br>
+        <input id="color-1" onkeyup="update()">
+        <input id="color-2" onkeyup="update()">
+        <input id="color-3" onkeyup="update()">
+        <input id="color-4" onkeyup="update()">
     </div>
 
-    <div class="settings__row">
-        Pattern 2<br>
-        <img width="40" src="patterns/pattern-1.svg" onclick="selectPattern('pattern-1.svg', 1)">
-        <img width="40" src="patterns/pattern-2.svg" onclick="selectPattern('pattern-2.svg', 1)">
-        <img width="40" src="patterns/pattern-3.svg" onclick="selectPattern('pattern-3.svg', 1)">
-        <img width="40" src="patterns/camo.svg" onclick="selectPattern('camo.svg', 1)">
-        <br>
-        <input id="scale-pattern-2" type="number" onkeyup="update()"> scale <br>
-        <input id="opacity-pattern-2" type="number" onkeyup="update()"> opacity
-    </div>
+    <!--<div class="settings__row">-->
+        <!--Pattern 2<br>-->
+        <!--<img width="40" src="patterns/pattern-1.svg" onclick="selectPattern('pattern-1.svg', 1)">-->
+        <!--<img width="40" src="patterns/pattern-2.svg" onclick="selectPattern('pattern-2.svg', 1)">-->
+        <!--<img width="40" src="patterns/pattern-3.svg" onclick="selectPattern('pattern-3.svg', 1)">-->
+        <!--<img width="40" src="patterns/camo.svg" onclick="selectPattern('camo.svg', 1)">-->
+        <!--<br>-->
+        <!--<input id="scale-pattern-2" type="number" onkeyup="update()"> scale <br>-->
+        <!--<input id="opacity-pattern-2" type="number" onkeyup="update()"> opacity-->
+    <!--</div>-->
 
     <div class="settings__row">
         <button onclick="toggle()">

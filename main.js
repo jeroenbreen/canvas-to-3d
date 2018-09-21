@@ -4,6 +4,10 @@ const settings = {
     resolution: 0.5,
     text: 'Frenkie de Jong',
     font: 'Arial',
+    color1: '#23ff00',
+    color2: 'pink',
+    color3: 'purple',
+    color4: 'yellow',
     patterns: [
         {
             image: 'pattern-1.svg',
@@ -29,7 +33,7 @@ function init() {
     setupClara();
     executeToggle();
     initSettings();
-    canvas = $('canvas')[0];
+    canvas = new fabric.Canvas('thecanvas');
     ctx = canvas.getContext("2d");
 }
 
@@ -43,6 +47,11 @@ function initSettings() {
     $('#opacity-pattern-1').val(settings.patterns[0].opacity);
     $('#scale-pattern-2').val(settings.patterns[1].scale);
     $('#opacity-pattern-2').val(settings.patterns[1].opacity);
+
+    $('#color-1').val(settings.color1);
+    $('#color-2').val(settings.color2);
+    $('#color-3').val(settings.color3);
+    $('#color-4').val(settings.color4);
 
     // $('#color').val(settings.color);
     // $('#repetition').val(settings.repetition);
@@ -77,7 +86,7 @@ function toggle() {
 }
 
 function executeToggle() {
-    let cvs = $('#thecanvas');
+    let cvs = $('.canvas-container');
     settings.visible ? cvs.show() : cvs.hide();
 }
 
@@ -98,19 +107,25 @@ function update() {
     settings.patterns[0].scale = Number($('#scale-pattern-1').val());
     settings.patterns[1].opacity = Number($('#opacity-pattern-2').val());
     settings.patterns[1].scale = Number($('#scale-pattern-2').val());
+    settings.color1 = $('#color-1').val();
+    settings.color2 = $('#color-2').val();
+    settings.color3 = $('#color-3').val();
+    settings.color4 = $('#color-4').val();
     draw();
 }
 
 function draw() {
     canvas.width = getWidth();
     canvas.height = getHeight();
+    canvas.clear();
     drawPatterns();
 }
 
 function drawPatterns() {
-    for (let pattern of settings.patterns) {
-        //drawPattern(pattern);
-        drawPatternWithAlgorithm(pattern);
+    for (var i = 0, l = settings.patterns.length; i < 1; i++) {
+        var pattern = settings.patterns[i];
+        drawPatternWithFabric(pattern);
+
     }
 }
 
@@ -132,6 +147,31 @@ function drawPatternWithAlgorithm(pattern) {
     ctx.drawSvg(path, pattern.x, pattern.y, getWidth() * pattern.scale, getHeight() * pattern.scale);
     claraApi.sceneGraph.touch(sceneCanvasId);
 }
+
+
+function drawPatternWithFabric(pattern) {
+    fabric.loadSVGFromURL('patterns/' + pattern.image, function(objects, options) {
+        setColor(objects);
+        var obj = fabric.util.groupSVGElements(objects, options);
+        canvas.add(obj).renderAll();
+        claraApi.sceneGraph.touch(sceneCanvasId);
+    });
+}
+
+function setColor(objects) {
+    var usedColors = [];
+    for (var i = 0, l = objects.length; i < l; i++) {
+        var item, colorIndex;
+        item = objects[i];
+        if (usedColors.indexOf(item.fill) === -1) {
+            usedColors.push(item.fill);
+        }
+        colorIndex = usedColors.indexOf(item.fill);
+        item.fill = settings['color' + (colorIndex + 1)];
+    }
+
+}
+
 
 
 
