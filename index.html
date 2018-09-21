@@ -7,6 +7,13 @@
 
     <script src="https://clara.io/js/claraplayer.min.js"></script>
 
+    <!-- Required to convert named colors to RGB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvg/1.4/rgbcolor.min.js"></script>
+    <!-- Optional if you want blur -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stackblur-canvas/1.4.1/stackblur.min.js"></script>
+    <!-- Main canvg code -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvg/dist/browser/canvg.min.js"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Bitter|Lobster|Playfair+Display" rel="stylesheet">
 
     
@@ -23,36 +30,25 @@
     </div>
 
     <div class="settings__row">
-        Pattern<br>
-        <input type="radio" name="pattern" value="1" onclick="update()"> 1
-        <input type="radio" name="pattern" value="2" onclick="update()"> 2
-        <input type="radio" name="pattern" value="3" onclick="update()"> 3
-        <input type="radio" name="pattern" value="4" onclick="update()"> by code
-
+        Pattern 1<br>
+        <img width="40" src="patterns/pattern-1.svg" onclick="selectPattern('pattern-1.svg', 0)">
+        <img width="40" src="patterns/pattern-2.svg" onclick="selectPattern('pattern-2.svg', 0)">
+        <img width="40" src="patterns/pattern-3.svg" onclick="selectPattern('pattern-3.svg', 0)">
+        <img width="40" src="patterns/camo.svg" onclick="selectPattern('camo.svg', 0)">
+        <br>
+        <input id="scale-pattern-1" type="number" onkeyup="update()"> scale <br>
+        <input id="opacity-pattern-1" type="number" onkeyup="update()"> opacity
     </div>
 
     <div class="settings__row">
-        Pattern By Code<br>
-        <input id="color" onkeyup="update()">
-        <input id="repetition" onkeyup="update()" type="number">
-        <input id="size" onkeyup="update()" type="number">
-    </div>
-
-    <div class="settings__row">
-        Logo<br>
-        <input type="radio" name="logo" value="eagle" onclick="update()"> Eagle
-        <input type="radio" name="logo" value="lion" onclick="update()"> Lion
-    </div>
-
-    <div class="settings__row">
-        Text<br>
-        <input id="text" onkeyup="update()">
-        <select id="font" onchange="update()">
-            <option value="Arial">Arial</option>
-            <option value="Bitter">Bitter</option>
-            <option value="Lobster">Lobster</option>
-            <option value="Playfair Display">Playfair Display</option>
-        </select>
+        Pattern 2<br>
+        <img width="40" src="patterns/pattern-1.svg" onclick="selectPattern('pattern-1.svg', 1)">
+        <img width="40" src="patterns/pattern-2.svg" onclick="selectPattern('pattern-2.svg', 1)">
+        <img width="40" src="patterns/pattern-3.svg" onclick="selectPattern('pattern-3.svg', 1)">
+        <img width="40" src="patterns/camo.svg" onclick="selectPattern('camo.svg', 1)">
+        <br>
+        <input id="scale-pattern-2" type="number" onkeyup="update()"> scale <br>
+        <input id="opacity-pattern-2" type="number" onkeyup="update()"> opacity
     </div>
 
     <div class="settings__row">
